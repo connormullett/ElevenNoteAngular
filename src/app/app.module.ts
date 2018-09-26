@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 import {
   MatToolbarModule,
@@ -13,6 +14,11 @@ import {
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+
+const routes = [
+  { path: 'register', component: RegistrationComponent},
+  { path: '**', component: RegistrationComponent }
+];
 
 @NgModule({
   declarations: [
@@ -28,7 +34,8 @@ import { RegistrationComponent } from './components/registration/registration.co
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
