@@ -1,8 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {
   MatToolbarModule,
-  MatButtonModule
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule
  } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -17,8 +22,13 @@ import { RegistrationComponent } from './components/registration/registration.co
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
