@@ -1,0 +1,10 @@
+.example-fill-remaining-space{
+    flex: 1 1 auto;
+}
+
+.nav-btn{
+    margin-right: 05.em;
+    background-color: #132584;
+    color: white;
+    border-color: #132584;
+}
