@@ -12,6 +12,9 @@ const Api_Url = "https://kcpelevennote.azurewebsites.net";
 })
 export class AuthService {
 
+  userInfo: Token;
+  isLoggedIn = new Subject<boolean>();
+
   constructor(private _http: HttpClient, private _router: Router) { }
 
   register(regUserData: RegisterUser){
@@ -27,12 +30,22 @@ export class AuthService {
       });
   }
 
+  logout(){
+    localStorage.clear();
+    this.isLoggedIn.next(false);
+
+    this._http.post(`${Api_Url}/api/account/logout`, { headers: this.setHeader() } );
+    this._router.navigate(['/login']);
+  }
+
   currentUser(): Observable<Object>{
     if(!localStorage.getItem('id_token')){ return new Observable(observer => observer.next(false)); }
 
-    const authHeader = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
+    return this._http.get(`${Api_Url}/api/Account/UserInfo`, {headers: this.setHeader()});
+  }
 
-    return this._http.get(`${Api_Url}/api/Account/UserInfo`, {headers: authHeader});
+  private setHeader(): HttpHeaders{
+    return new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`);
   }
 }
 
